@@ -54,7 +54,7 @@ namespace CheatCodeGenerator
 
                 asm = Regex.Replace(asm, @"\/\*[\s\S]*?\*\/|\/\/.*", "");
 
-                var cheatCode=Assembler.CheatCodeGenerator(baseAddr, injectAddr, destAddr, asm.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries), useLink, jumpBack);
+                var cheatCode = Assembler.CheatCodeGenerator(baseAddr, injectAddr, destAddr, asm.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries), useLink, jumpBack);
                 txtCICheat.Text = "[作弊功能说明]\r\n";
                 txtCICheat.AppendText(cheatCode);
             }
@@ -72,17 +72,45 @@ namespace CheatCodeGenerator
         {
             e.Handled = true;
             //Console.WriteLine((byte)e.KeyChar);
+            var contolCharBytes = new byte[] { 1, 3, 8, 22, 24, 26 };
+            if (TestKeyChar(e.KeyChar, contolCharBytes))
+            {
+                e.Handled = false;
+                return;
+            }
+            if (char.IsNumber(e.KeyChar))
+            {
+                e.Handled = false;
+                return;
+            }
+            if (TestKeyChar(e.KeyChar, 'a', 'f')) e.KeyChar = char.ToUpper(e.KeyChar);
+            if (TestKeyChar(e.KeyChar, 'A', 'F'))
+            {
+                e.Handled = false;
+                return;
+            }
+        }
 
-            if (char.IsNumber(e.KeyChar) || e.KeyChar.Equals('\b')) e.Handled = false;
-            if (e.KeyChar >= 'a' && e.KeyChar <= 'f') e.KeyChar = char.ToUpper(e.KeyChar);
-            if (e.KeyChar >= 'A' && e.KeyChar <= 'F') e.Handled = false;
+        private bool TestKeyChar(char key, byte[] bytes)
+        {
+            bool tmp = false;
+            foreach (var b in bytes)
+            {
+                tmp = tmp || (key == b);
+            }
+            return tmp;
+        }
+
+        private bool TestKeyChar(char key, char min, char max)
+        {
+            if (key >= min && key <= max) return true;
+            return false;
         }
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
             LoadSetting();
             LoadStyel();
-
         }
 
         private void TsbtnCIAsmFont_Click(object sender, EventArgs e)
@@ -103,15 +131,12 @@ namespace CheatCodeGenerator
                     Properties.Settings.Default.Save();
                 }
             }
-
         }
 
         private void LoadSetting()
         {
             txtCIAsm.Font = Properties.Settings.Default.font;
         }
-
-
 
         private void TsbtnCIAsmStyel_Click(object sender, EventArgs e)
         {

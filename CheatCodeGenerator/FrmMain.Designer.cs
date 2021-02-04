@@ -215,7 +215,7 @@
             this.txtCIInjectAddr.Margin = new System.Windows.Forms.Padding(3, 4, 3, 7);
             this.txtCIInjectAddr.MaxLength = 6;
             this.txtCIInjectAddr.Name = "txtCIInjectAddr";
-            this.txtCIInjectAddr.Size = new System.Drawing.Size(106, 25);
+            this.txtCIInjectAddr.Size = new System.Drawing.Size(106, 23);
             this.txtCIInjectAddr.TabIndex = 1;
             this.txtCIInjectAddr.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtCIAddr_KeyPress);
             // 
@@ -239,7 +239,7 @@
             this.txtCIBaseAddr.Margin = new System.Windows.Forms.Padding(3, 4, 3, 7);
             this.txtCIBaseAddr.MaxLength = 8;
             this.txtCIBaseAddr.Name = "txtCIBaseAddr";
-            this.txtCIBaseAddr.Size = new System.Drawing.Size(106, 25);
+            this.txtCIBaseAddr.Size = new System.Drawing.Size(106, 23);
             this.txtCIBaseAddr.TabIndex = 0;
             this.txtCIBaseAddr.Text = "00000000";
             this.txtCIBaseAddr.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtCIAddr_KeyPress);
@@ -252,7 +252,7 @@
             this.txtCIDestAddr.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtCIDestAddr.MaxLength = 6;
             this.txtCIDestAddr.Name = "txtCIDestAddr";
-            this.txtCIDestAddr.Size = new System.Drawing.Size(106, 25);
+            this.txtCIDestAddr.Size = new System.Drawing.Size(106, 23);
             this.txtCIDestAddr.TabIndex = 2;
             this.txtCIDestAddr.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtCIAddr_KeyPress);
             // 
@@ -400,10 +400,10 @@
         '\''};
             this.txtCIAsm.AutoIndentCharsPatterns = "^\\s*[\\w\\.]+(\\s\\w+)?\\s*(?<range>=)\\s*(?<range>[^;=]+);\n^\\s*(case|default)\\s*[^:]*(" +
     "?<range>:)\\s*(?<range>[^;]+);";
-            this.txtCIAsm.AutoScrollMinSize = new System.Drawing.Size(27, 19);
+            this.txtCIAsm.AutoScrollMinSize = new System.Drawing.Size(27, 17);
             this.txtCIAsm.BackBrush = null;
             this.txtCIAsm.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtCIAsm.CharHeight = 19;
+            this.txtCIAsm.CharHeight = 17;
             this.txtCIAsm.CharUnicodeWidth = 16;
             this.txtCIAsm.CharWidth = 8;
             this.txtCIAsm.Cursor = System.Windows.Forms.Cursors.IBeam;

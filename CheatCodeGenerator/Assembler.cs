@@ -9,115 +9,6 @@ namespace CheatCodeGenerator
     public static class Assembler
     {
         /// <summary>
-        /// 单行ARM汇编转字节数组
-        /// </summary>
-        /// <param name="line">汇编代码</param>
-        /// <param name="little_endiam">是否为小端序</param>
-        /// <returns>字节数组</returns>
-        public static byte[] ToBytes(string line, bool little_endiam = true)
-        {
-            using (var keystone = new Engine(Architecture.ARM, little_endiam ? Mode.LITTLE_ENDIAN : Mode.BIG_ENDIAN)
-            {
-                ThrowOnError = true
-            })
-            {
-                var encodeData = keystone.Assemble(line, 0);
-                return encodeData.Buffer;
-            }
-        }
-
-        /// <summary>
-        /// 多行ARM汇编转数组
-        /// </summary>
-        /// <param name="lines">汇编代码数组</param>
-        /// <param name="little_endiam">是否为小端序</param>
-        /// <returns>字节数组</returns>
-        public static byte[] ToBytes(string[] lines, bool little_endiam = true) => ToBytes(string.Join(";", lines), little_endiam);
-
-        /// <summary>
-        /// 单行ARM汇编转32位无符号整数
-        /// </summary>
-        /// <param name="line">汇编代码</param>
-        /// <param name="little_endiam">是否为小端序</param>
-        /// <returns>无符号32位整数</returns>
-        public static uint ToUInt32(string line, bool little_endiam = true) => BitConverter.ToUInt32(ToBytes(line, little_endiam), 0);
-
-        /// <summary>
-        /// 单行ARM汇编转32位有符号整数
-        /// </summary>
-        /// <param name="line">汇编代码</param>
-        /// <param name="little_endiam">是否为小端序</param>
-        /// <returns>32位有符号整数</returns>
-        public static int ToInt32(string line, bool little_endiam = true) => BitConverter.ToInt32(ToBytes(line, little_endiam), 0);
-
-        /// <summary>
-        /// 单行ARM汇编转16进制文本
-        /// </summary>
-        /// <param name="line">汇编代码</param>
-        /// <param name="little_endiam">是否为小端序</param>
-        /// <returns>16进制文本</returns>
-        public static string ToHex(string line, bool little_endiam = false) => ToInt32(line, little_endiam).ToString("X8");
-
-        /// <summary>
-        /// 多行ARM汇编转32位无符号整数数组
-        /// </summary>
-        /// <param name="lines">汇编代码数组</param>
-        /// <param name="little_endiam">是否为小端序</param>
-        /// <returns>32位无符号整数数组</returns>
-        public static uint[] ToUInt32(string[] lines, bool little_endiam = true)
-        {
-            var list = new List<uint>();
-            var asmBytes = ToBytes(lines, little_endiam);
-
-            if (asmBytes.Length % 4 == 0)
-            {
-                for (int i = 0; i < asmBytes.Length; i += 4)
-                {
-                    list.Add(BitConverter.ToUInt32(asmBytes, i));
-                }
-            }
-            return list.ToArray();
-        }
-
-        /// <summary>
-        /// 多行ARM汇编转32位有符号整数数组
-        /// </summary>
-        /// <param name="lines">汇编代码数组</param>
-        /// <param name="little_endiam">是否为小端序</param>
-        /// <returns>32位有符号整数数组</returns>
-        public static int[] ToInt32(string[] lines, bool little_endiam = true)
-        {
-            var list = new List<int>();
-            var asmBytes = ToBytes(lines, little_endiam);
-
-            if (asmBytes.Length % 4 == 0)
-            {
-                for (int i = 0; i < asmBytes.Length; i += 4)
-                {
-                    list.Add(BitConverter.ToInt32(asmBytes, i));
-                }
-            }
-            return list.ToArray();
-        }
-
-        /// <summary>
-        /// 多行ARM汇编转16进制文本数组
-        /// </summary>
-        /// <param name="lines">汇编代码</param>
-        /// <param name="little_endiam">是否为小端序</param>
-        /// <returns>16进制文本数组</returns>
-        public static string[] ToHex(string[] lines, bool little_endiam = true)
-        {
-            var list = new List<string>();
-            var uintArray = ToInt32(lines, little_endiam);
-            foreach (var i in uintArray)
-            {
-                list.Add(i.ToString("X8"));
-            }
-            return list.ToArray();
-        }
-
-        /// <summary>
         /// 计算跳转偏移
         /// </summary>
         /// <param name="injectAddr">注入地址</param>
@@ -163,7 +54,7 @@ namespace CheatCodeGenerator
 
             if (jumpBack)
             {
-                asm = useLink ? "MOV PC, LR" : $"B #0x{(uint)-offset:X6}";
+                asm = useLink ? "BX LR" : $"B #0x{(uint)-offset:X6}";
                 lines.Add(asm);
             }
 
@@ -182,7 +73,19 @@ namespace CheatCodeGenerator
         public static string CheatCodeGenerator(uint baseAddr, uint injectAddr, uint destAddr, string[] asmCode, bool useLink = true, bool jumpBack = true)
         {
             //var asmLines = AssemblerGenerator(injectAddr, destAddr, asmCode, useLink, jumpBack);
-            var hexLines = ToHex(asmCode);
+            var hexList = new List<string>();
+
+            using (var keystone = new Engine(Architecture.ARM, Mode.LITTLE_ENDIAN)
+            {
+                ThrowOnError = true
+            })
+            {
+                foreach (var line in asmCode)
+                {
+                    var encodeData = keystone.Assemble(line, 0);
+                    hexList.AddRange(encodeData.ToHex());
+                }
+            }
 
             var codeLines = new List<string>
             {
@@ -191,17 +94,17 @@ namespace CheatCodeGenerator
                 baseAddr.ToString("X8"),
                 //设定注入地址
                 (injectAddr - baseAddr).ToString("X8"),
-                hexLines[0],
+                hexList[0],
                 //为目的地址申请控件
                 $"E0{destAddr - baseAddr:X6}",
-                ((hexLines.Length - 1) * 4).ToString("X8")
+                ((hexList.Count - 1) * 4).ToString("X8")
             };
             //写入汇编
-            if (hexLines.Length > 1)
+            if (hexList.Count > 1)
             {
-                for (int i = 1; i < hexLines.Length; i++)
+                for (int i = 1; i < hexList.Count; i++)
                 {
-                    codeLines.Add(hexLines[i]);
+                    codeLines.Add(hexList[i]);
                 }
             }
             if (codeLines.Count % 2 != 0) codeLines.Add("00000000");

@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Keystone
 {
@@ -47,6 +49,48 @@ namespace Keystone
             }
 
             return stringBuilder.ToString();
+        }
+
+        public int[] ToInt32()
+        {
+            var list = new List<int>();
+
+            if (Buffer.Length % 4 == 0)
+            {
+                for (int i = 0; i < Buffer.Length; i += 4)
+                {
+                    list.Add(BitConverter.ToInt32(Buffer, i));
+                }
+            }
+            return list.ToArray();
+        }
+
+        public uint[] ToUInt32()
+        {
+            var list = new List<uint>();
+
+            if (Buffer.Length % 4 == 0)
+            {
+                for (int i = 0; i < Buffer.Length; i += 4)
+                {
+                    list.Add(BitConverter.ToUInt32(Buffer, i));
+                }
+            }
+            return list.ToArray();
+        }
+
+        public string[] ToHex()
+        {
+            var list = new List<string>();
+            if (Buffer.Length % 4 == 0)
+            {
+                for (int i = 0; i < Buffer.Length; i += 4)
+                {
+                    var tmp = BitConverter.ToUInt32(Buffer, i);
+                    list.Add(tmp.ToString("X8"));
+                }
+            }
+            return list.ToArray();
         }
     }
 }
