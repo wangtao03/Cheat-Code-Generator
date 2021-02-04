@@ -1,0 +1,22 @@
+<doc>
+
+  <brackets left="[" right="]" />
+  <!--样式-->
+  <style name="CommentStyle" color="#258c25" />
+  <style name="NumberStyle" color="#ff4500" />
+  <style name="RegisterStyle" color="#2f91af" />
+  <style name="InstructionStyle" color="Blue" fontStyle="Bold" />
+
+  <!--注释高亮-->
+  <rule style="CommentStyle" options="Multiline">//.*$</rule>
+  <rule style="CommentStyle" options="Singleline">(/\*.*?\*/)|(/\*.*)</rule>
+  <rule style="CommentStyle" options="Singleline,RightToLeft">(/\*.*?\*/)|(.*\*/)</rule>
+  <!--数字高亮-->
+  <rule style="NumberStyle" options="Singleline">([#=](0[xX])?[a-fA-F\d]+)</rule>
+
+  <!--寄存器高亮-->
+  <rule style="RegisterStyle" options="Singleline,IgnoreCase">\br\d\b|\br1[0-5]\b|\ba[1-4]\b|\bv[1-8]\b|\b(sb|ip|sp|lr|pc)\b</rule>
+
+  <!--指令高亮-->
+  <rule style="InstructionStyle" options="Singleline,IgnoreCase">\b(ADC|ADD|ADR|ADRL|AND|ASR|B|BFC|BFI|BIC|BKPT|BL|BLX|BX|BXJ|CBNZ|CBZ|CDP|CDP2|CHKA|CLREX|CLZ|CMN|CMP|CPS|CPY|DBG|DMB|DSB|ENTERX|EOR|HB|HBL|HBLP|HBP|ISB|IT|LDC|LDC2|LDM|LDR|LDR|LDREX|LDREXB|LDREXD|LDREXH|LEAVEX|LR|LSL|LSR|MAR|MCR|MCR2|MCRR|MCRR2|MIA|MIAPH|MIAxy|MLA|MLS|MOV|MOV32|MOVT|MRA|MRC|MRC2|MRS|MSR|MUL|MVN|NOP|ORN|ORR|PKHBT|PKHTB|PLD|PLI|POP|PUSH|QADD|QADD16|QADD8|QASX|QDADD|QDSUB|QSAX|QSUB|QSUB16|QSUB8|RBIT|REV|REV16|REVSH|RFE|ROR|RSB|RSC|SADD16|SADD8|SASX|SBC|SBFX|SDIV|SEL|SETEND|SEV|SHADD16|SHADD8|SHASX|SHSAX|SHSUB16|SHSUB8|SMC|SMLAD|SMLAL|SMLALD|SMLALxy|SMLSD|SMLSLD|SMMUL|SMUAD|SMULL|SMULWy|SMULxy|SMUSD|SRS|SSAT|SSAT16|SSAX|SSUB16|SSUB8|STC|STC2|STM|STR|STREX|STREXB|STREXD|STREXH|SUB|SUBSpc|SVC|SWP|SWPB|SXT|SXTA|TBB|TBH|TEQ|TST|UADD16|UADD8|UASX|UBFX|UDIV|UHADD16|UHADD8|UHASX|UHSAX|UHSUB16|UHSUB8|UMAAL|UMLAL|UMULL|UQADD16|UQADD8|UQASX|UQSAX|UQSUB16|UQSUB8|USAD8|USADA8|USAT|USAT16|USAX|USUB16|USUB8|UXT|UXTA|WFE|WFI|YIELD)(EQ|NE|CS|HS|CC|LO|MI|PL|VS|VC|HI|LS|GE|LT|GT|LE|AL)?\b</rule>
+</doc>
