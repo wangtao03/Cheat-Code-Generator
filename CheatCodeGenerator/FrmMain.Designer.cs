@@ -60,10 +60,12 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbtnCIAsmStyel = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsbtnCISaveAsm = new System.Windows.Forms.ToolStripButton();
+            this.tsbtnCIConvert = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbtnCISaveAsm = new System.Windows.Forms.ToolStripButton();
             this.tsbtnSaveCheat = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.tpNormal = new System.Windows.Forms.TabPage();
             this.tabMain.SuspendLayout();
             this.tpCodeInject.SuspendLayout();
             this.tlpCodeInject.SuspendLayout();
@@ -80,6 +82,7 @@
             // tabMain
             // 
             this.tabMain.Controls.Add(this.tpCodeInject);
+            this.tabMain.Controls.Add(this.tpNormal);
             this.tabMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabMain.Location = new System.Drawing.Point(3, 3);
             this.tabMain.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -97,7 +100,7 @@
             this.tpCodeInject.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tpCodeInject.Size = new System.Drawing.Size(673, 367);
             this.tpCodeInject.TabIndex = 1;
-            this.tpCodeInject.Text = "代码注入";
+            this.tpCodeInject.Text = "汇编代码";
             this.tpCodeInject.UseVisualStyleBackColor = true;
             // 
             // tlpCodeInject
@@ -215,9 +218,9 @@
             this.txtCIInjectAddr.Margin = new System.Windows.Forms.Padding(3, 4, 3, 7);
             this.txtCIInjectAddr.MaxLength = 6;
             this.txtCIInjectAddr.Name = "txtCIInjectAddr";
-            this.txtCIInjectAddr.Size = new System.Drawing.Size(106, 23);
+            this.txtCIInjectAddr.Size = new System.Drawing.Size(106, 25);
             this.txtCIInjectAddr.TabIndex = 1;
-            this.txtCIInjectAddr.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtCIAddr_KeyPress);
+            this.txtCIInjectAddr.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtAddr_KeyPress);
             // 
             // labCIBaseAddr
             // 
@@ -239,10 +242,10 @@
             this.txtCIBaseAddr.Margin = new System.Windows.Forms.Padding(3, 4, 3, 7);
             this.txtCIBaseAddr.MaxLength = 8;
             this.txtCIBaseAddr.Name = "txtCIBaseAddr";
-            this.txtCIBaseAddr.Size = new System.Drawing.Size(106, 23);
+            this.txtCIBaseAddr.Size = new System.Drawing.Size(106, 25);
             this.txtCIBaseAddr.TabIndex = 0;
             this.txtCIBaseAddr.Text = "00000000";
-            this.txtCIBaseAddr.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtCIAddr_KeyPress);
+            this.txtCIBaseAddr.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtAddr_KeyPress);
             // 
             // txtCIDestAddr
             // 
@@ -252,9 +255,9 @@
             this.txtCIDestAddr.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtCIDestAddr.MaxLength = 6;
             this.txtCIDestAddr.Name = "txtCIDestAddr";
-            this.txtCIDestAddr.Size = new System.Drawing.Size(106, 23);
+            this.txtCIDestAddr.Size = new System.Drawing.Size(106, 25);
             this.txtCIDestAddr.TabIndex = 2;
-            this.txtCIDestAddr.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtCIAddr_KeyPress);
+            this.txtCIDestAddr.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtAddr_KeyPress);
             // 
             // labZero1
             // 
@@ -400,10 +403,10 @@
         '\''};
             this.txtCIAsm.AutoIndentCharsPatterns = "^\\s*[\\w\\.]+(\\s\\w+)?\\s*(?<range>=)\\s*(?<range>[^;=]+);\n^\\s*(case|default)\\s*[^:]*(" +
     "?<range>:)\\s*(?<range>[^;]+);";
-            this.txtCIAsm.AutoScrollMinSize = new System.Drawing.Size(27, 17);
+            this.txtCIAsm.AutoScrollMinSize = new System.Drawing.Size(27, 19);
             this.txtCIAsm.BackBrush = null;
             this.txtCIAsm.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtCIAsm.CharHeight = 17;
+            this.txtCIAsm.CharHeight = 19;
             this.txtCIAsm.CharUnicodeWidth = 16;
             this.txtCIAsm.CharWidth = 8;
             this.txtCIAsm.Cursor = System.Windows.Forms.Cursors.IBeam;
@@ -420,6 +423,8 @@
             this.txtCIAsm.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("txtCIAsm.ServiceColors")));
             this.txtCIAsm.Size = new System.Drawing.Size(235, 274);
             this.txtCIAsm.TabIndex = 0;
+            this.txtCIAsm.TextLines = new string[] {
+        ""};
             this.txtCIAsm.Zoom = 100;
             // 
             // grpCICheat
@@ -456,8 +461,9 @@
             this.toolStripSeparator1,
             this.tsbtnCIAsmStyel,
             this.toolStripSeparator2,
-            this.tsbtnCISaveAsm,
+            this.tsbtnCIConvert,
             this.toolStripSeparator3,
+            this.tsbtnCISaveAsm,
             this.tsbtnSaveCheat,
             this.toolStripSeparator4});
             this.tsCodeInject.Location = new System.Drawing.Point(0, 0);
@@ -496,6 +502,21 @@
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 56);
             // 
+            // tsbtnCIConvert
+            // 
+            this.tsbtnCIConvert.Image = global::CheatCodeGenerator.Properties.Resources.hex;
+            this.tsbtnCIConvert.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnCIConvert.Name = "tsbtnCIConvert";
+            this.tsbtnCIConvert.Size = new System.Drawing.Size(72, 53);
+            this.tsbtnCIConvert.Text = "ASM>HEX";
+            this.tsbtnCIConvert.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tsbtnCIConvert.Click += new System.EventHandler(this.TsbtnCIConvert_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 56);
+            // 
             // tsbtnCISaveAsm
             // 
             this.tsbtnCISaveAsm.Image = global::CheatCodeGenerator.Properties.Resources.asm;
@@ -505,11 +526,6 @@
             this.tsbtnCISaveAsm.Text = "保存汇编";
             this.tsbtnCISaveAsm.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.tsbtnCISaveAsm.Click += new System.EventHandler(this.TsbtnCISaveAsm_Click);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 56);
             // 
             // tsbtnSaveCheat
             // 
@@ -525,6 +541,15 @@
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(6, 56);
+            // 
+            // tpNormal
+            // 
+            this.tpNormal.Location = new System.Drawing.Point(4, 26);
+            this.tpNormal.Name = "tpNormal";
+            this.tpNormal.Size = new System.Drawing.Size(673, 367);
+            this.tpNormal.TabIndex = 2;
+            this.tpNormal.Text = "常规代码";
+            this.tpNormal.UseVisualStyleBackColor = true;
             // 
             // FrmMain
             // 
@@ -592,8 +617,10 @@
         private System.Windows.Forms.ToolStripButton tsbtnCISaveAsm;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripButton tsbtnSaveCheat;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private FastColoredTextBoxNS.FastColoredTextBox txtCIAsm;
+        private System.Windows.Forms.ToolStripButton tsbtnCIConvert;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.TabPage tpNormal;
     }
 }
 

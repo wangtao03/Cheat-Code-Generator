@@ -97,6 +97,8 @@
     <None Include="Resources\asm.png" />
     <None Include="Resources\cheat.png" />
     <None Include="Resources\next.png" />
+    <None Include="Resources\convert.png" />
+    <None Include="Resources\hex.png" />
     <Content Include="Style.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

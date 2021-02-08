@@ -445,6 +445,12 @@ namespace FastColoredTextBoxNS
             }
         }
 
+
+        public string[] TextLines
+        {
+            get => Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+            set => Text = string.Join("\r\n", value);
+        }
         /// <summary>
         /// Background color for current line
         /// </summary>
@@ -1542,7 +1548,7 @@ namespace FastColoredTextBoxNS
             //clac size
             SizeF size = GetCharSize(BaseFont, 'M');
 
-            CharWidth = (int)Math.Round(size.Width * 1f /*0.85*/)-1 /*0*/;
+            CharWidth = (int)Math.Round(size.Width * 1f /*0.85*/) - 1 /*0*/;
             CharUnicodeWidth = (int)Math.Round(GetCharSize(BaseFont, '中').Width * 1f /*0.85*/) - 1 /*0*/;
             CharHeight = lineInterval + (int)Math.Round(size.Height * 1f /*0.9*/) - 1 /*0*/;
             //

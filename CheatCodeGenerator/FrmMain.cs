@@ -2,6 +2,7 @@
 
 using System;
 using System.IO;
+using System.Security.Cryptography.X509Certificates;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -24,7 +25,7 @@ namespace CheatCodeGenerator
                 var destAddr = Convert.ToUInt32(txtCIDestAddr.Text, 16);
                 var useLink = rdoCIUseBL.Checked;
                 var jumpBack = chkJumpBack.Checked;
-                txtCIAsm.Text = string.Join("\r\n", Assembler.AssemblerGenerator(injectAddr, destAddr, new string[] { }, useLink, jumpBack));
+                txtCIAsm.TextLines = Assembler.AssemblerGenerator(injectAddr, destAddr, new string[] { }, useLink, jumpBack);
             }
             catch
             {
@@ -57,6 +58,11 @@ namespace CheatCodeGenerator
                 var cheatCode = Assembler.CheatCodeGenerator(baseAddr, injectAddr, destAddr, asm.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries), useLink, jumpBack);
                 txtCICheat.Text = "[作弊功能说明]\r\n";
                 txtCICheat.AppendText(cheatCode);
+                grpCICheat.Text = "作弊代码输出:";
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                MessageBox.Show("输入的数据有误!", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
@@ -68,7 +74,7 @@ namespace CheatCodeGenerator
             }
         }
 
-        private void TxtCIAddr_KeyPress(object sender, KeyPressEventArgs e)
+        private void TxtAddr_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = true;
             //Console.WriteLine((byte)e.KeyChar);
@@ -191,6 +197,13 @@ namespace CheatCodeGenerator
                     File.WriteAllText(saveFileDialog.FileName, txtCICheat.Text);
                 }
             }
+        }
+
+        private void TsbtnCIConvert_Click(object sender, EventArgs e)
+        {
+            if (txtCIAsm.TextLength <= 2) return;
+            txtCICheat.Lines = Assembler.Assembler2Hex(txtCIAsm.TextLines);
+            grpCICheat.Text = "16进制汇编代码:";
         }
     }
 }

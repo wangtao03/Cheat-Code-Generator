@@ -1,6 +1,5 @@
 ﻿using Keystone;
 
-using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -14,11 +13,11 @@ namespace CheatCodeGenerator
         /// <param name="injectAddr">注入地址</param>
         /// <param name="destAddr">目的地址</param>
         /// <returns>跳转偏移量</returns>
-        public static int CalcOffset(uint injectAddr, uint destAddr)
+        public static int CalcHexOffset(uint injectAddr, uint destAddr)
         {
             if (destAddr >= injectAddr)     //判断地址大小
             {
-                return (int)(destAddr - (injectAddr + 8)) / 4;                  //源码
+                return (int)(destAddr - (injectAddr + 8)) / 4;                  //原码
             }
             else
             {
@@ -41,7 +40,7 @@ namespace CheatCodeGenerator
             var offset = destAddr - injectAddr;
 
             var asm = useLink ? "BL" : "B";
-            lines.Add($"{asm} #0x{offset:X6}");
+            lines.Add($"{asm} #0x{offset:X8}");
 
             if (asmCode == null || asmCode.Length <= 0)
             {
@@ -54,11 +53,35 @@ namespace CheatCodeGenerator
 
             if (jumpBack)
             {
-                asm = useLink ? "BX LR" : $"B #0x{(uint)-offset:X6}";
+                asm = useLink ? "BX LR" : $"B #0x{(int)(-offset - 4):X8}";
                 lines.Add(asm);
             }
 
             return lines.ToArray();
+        }
+
+        /// <summary>
+        /// 汇编转hex
+        /// </summary>
+        /// <param name="asmCode">汇编代码</param>
+        /// <param name="addZeroX">开头是否添加0x</param>
+        /// <returns></returns>
+        public static string[] Assembler2Hex(string[] asmCode, bool addZeroX = false)
+        {
+            var hexList = new List<string>();
+
+            using (var keystone = new Engine(Architecture.ARM, Mode.LITTLE_ENDIAN)
+            {
+                ThrowOnError = true
+            })
+            {
+                foreach (var line in asmCode)
+                {
+                    var encodeData = keystone.Assemble(line, 0);
+                    hexList.AddRange(encodeData.ToHex(addZeroX ? "0x" : ""));
+                }
+            }
+            return hexList.ToArray();
         }
 
         /// <summary>
@@ -72,20 +95,7 @@ namespace CheatCodeGenerator
         /// <returns>作弊代码</returns>
         public static string CheatCodeGenerator(uint baseAddr, uint injectAddr, uint destAddr, string[] asmCode, bool useLink = true, bool jumpBack = true)
         {
-            //var asmLines = AssemblerGenerator(injectAddr, destAddr, asmCode, useLink, jumpBack);
-            var hexList = new List<string>();
-
-            using (var keystone = new Engine(Architecture.ARM, Mode.LITTLE_ENDIAN)
-            {
-                ThrowOnError = true
-            })
-            {
-                foreach (var line in asmCode)
-                {
-                    var encodeData = keystone.Assemble(line, 0);
-                    hexList.AddRange(encodeData.ToHex());
-                }
-            }
+            var hexList = Assembler2Hex(asmCode);
 
             var codeLines = new List<string>
             {
@@ -95,14 +105,14 @@ namespace CheatCodeGenerator
                 //设定注入地址
                 (injectAddr - baseAddr).ToString("X8"),
                 hexList[0],
-                //为目的地址申请控件
+                //目的地址代码长度
                 $"E0{destAddr - baseAddr:X6}",
-                ((hexList.Count - 1) * 4).ToString("X8")
+                ((hexList.Length - 1) * 4).ToString("X8")
             };
             //写入汇编
-            if (hexList.Count > 1)
+            if (hexList.Length > 1)
             {
-                for (int i = 1; i < hexList.Count; i++)
+                for (int i = 1; i < hexList.Length; i++)
                 {
                     codeLines.Add(hexList[i]);
                 }

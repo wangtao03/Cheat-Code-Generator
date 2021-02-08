@@ -79,7 +79,7 @@ namespace Keystone
             return list.ToArray();
         }
 
-        public string[] ToHex()
+        public string[] ToHex(string head = "")
         {
             var list = new List<string>();
             if (Buffer.Length % 4 == 0)
@@ -87,7 +87,7 @@ namespace Keystone
                 for (int i = 0; i < Buffer.Length; i += 4)
                 {
                     var tmp = BitConverter.ToUInt32(Buffer, i);
-                    list.Add(tmp.ToString("X8"));
+                    list.Add($"{head}{tmp:X8}");
                 }
             }
             return list.ToArray();
