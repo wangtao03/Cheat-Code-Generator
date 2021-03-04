@@ -54,6 +54,7 @@ namespace CheatCodeGenerator
                 var asm = txtCIAsm.Text;
 
                 asm = Regex.Replace(asm, @"\/\*[\s\S]*?\*\/|\/\/.*", "");
+                asm = Regex.Replace(asm, @"\S*:", "");
 
                 var cheatCode = Assembler.CheatCodeGenerator(baseAddr, injectAddr, destAddr, asm.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries), useLink, jumpBack);
                 txtCICheat.Text = "[作弊功能说明]\r\n";
@@ -117,6 +118,8 @@ namespace CheatCodeGenerator
         {
             LoadSetting();
             LoadStyel();
+
+            rdoCJConditionEmpty.Tag = grbCJCondition.Tag = string.Empty;
         }
 
         private void TsbtnCIAsmFont_Click(object sender, EventArgs e)
@@ -204,6 +207,57 @@ namespace CheatCodeGenerator
             if (txtCIAsm.TextLength <= 2) return;
             txtCICheat.Lines = Assembler.Assembler2Hex(txtCIAsm.TextLines);
             grpCICheat.Text = "16进制汇编代码:";
+        }
+
+        private void RdoCJCondition_CheckedChanged(object sender, EventArgs e)
+        {
+            var radio = (RadioButton)sender;
+            grbCJCondition.Tag = radio.Tag.ToString();
+        }
+
+        private void BtnCJCode_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var startAddr = Convert.ToUInt32(txtCJAddrStart.Text, 16);
+                var destAddr = Convert.ToUInt32(txtCJAddrDest.Text, 16);
+                var useLink = rdoCJUseBL.Checked;
+
+                var offset = destAddr - startAddr;
+                var asm = useLink ? "BL" : "B";
+
+                asm = $"{asm}{grbCJCondition.Tag} #0x{offset:X}";
+                txtCJAsm.Text = asm;
+
+                var hex = Assembler.Assembler2Hex(new string[] { asm });
+                if (hex.Length > 0)
+                {
+                    txtCJCheat.Text = $"{startAddr:X8} {hex[0]:X8}";
+                }
+            }
+            catch (Exception)
+            {
+                return;
+            }
+        }
+
+        private void ChkCJKeyCode_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                var checkBox = (CheckBox)sender;
+                var code = Convert.ToUInt32(grpKeyCode.Tag.ToString(), 16);
+                var keyValue = Convert.ToUInt32(checkBox.Tag.ToString(), 16);
+
+                code ^= keyValue;
+                grpKeyCode.Tag = $"0x{code:X}";
+
+                txtCJKeyCode.Text = $"DD000000 {code:X8}";
+            }
+            catch (Exception)
+            {
+                return;
+            }
         }
     }
 }

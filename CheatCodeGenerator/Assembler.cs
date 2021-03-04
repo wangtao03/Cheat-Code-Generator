@@ -39,11 +39,13 @@ namespace CheatCodeGenerator
             var lines = new List<string>();
             var offset = destAddr - injectAddr;
 
+            lines.Add($"0x{injectAddr:X}:");
             var asm = useLink ? "BL" : "B";
-            lines.Add($"{asm} #0x{offset:X8}");
+            lines.Add($"{asm} #0x{offset:X8}\r\n");
 
             if (asmCode == null || asmCode.Length <= 0)
             {
+                lines.Add($"0x{destAddr:X}:");
                 lines.Add("//此处写代码");
             }
             else
@@ -102,9 +104,7 @@ namespace CheatCodeGenerator
                 //设定偏移量
                 "D3000000",
                 baseAddr.ToString("X8"),
-                //设定注入地址
-                (injectAddr - baseAddr).ToString("X8"),
-                hexList[0],
+
                 //目的地址代码长度
                 $"E0{destAddr - baseAddr:X6}",
                 ((hexList.Length - 1) * 4).ToString("X8")
@@ -118,6 +118,12 @@ namespace CheatCodeGenerator
                 }
             }
             if (codeLines.Count % 2 != 0) codeLines.Add("00000000");
+
+            //注入点跳转
+            codeLines.Add((injectAddr - baseAddr).ToString("X8"));
+            codeLines.Add(hexList[0]);
+
+            
             //添加结束
             codeLines.Add("D2000000");
             codeLines.Add("00000000");

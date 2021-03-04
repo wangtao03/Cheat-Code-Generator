@@ -99,6 +99,7 @@
     <None Include="Resources\next.png" />
     <None Include="Resources\convert.png" />
     <None Include="Resources\hex.png" />
+    <None Include="Resources\down.png" />
     <Content Include="Style.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
