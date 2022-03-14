@@ -113,7 +113,6 @@ namespace FastColoredTextBoxNS
             }
             tempSB.AppendLine("}");
 
-
             if (UseOriginalFont)
             {
                 sb.Insert(0, string.Format(@"{{\fonttbl{{\f0\fmodern {0};}}}}{{\fs{1} ",

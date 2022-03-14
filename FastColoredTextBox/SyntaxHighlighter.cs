@@ -1050,7 +1050,8 @@ namespace FastColoredTextBoxNS
             public string Name;
             public int id;
             public int startLine;
-            public string Marker { get { return Name + id; } }
+            public string Marker
+            { get { return Name + id; } }
         }
 
         protected void InitSQLRegex()

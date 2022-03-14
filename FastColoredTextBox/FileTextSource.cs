@@ -249,7 +249,6 @@ namespace FastColoredTextBoxNS
 
         public override void SaveToFile(string fileName, Encoding enc)
         {
-
             var newLinePos = new List<int>(Count);
             //create temp file
             var dir = Path.GetDirectoryName(fileName);

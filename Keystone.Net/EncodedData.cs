@@ -39,13 +39,20 @@ namespace Keystone
         /// </summary>
         /// <param name="format"></param>
         /// <returns></returns>
-        public string ToString(string format)
+        public string ToString(string format, bool bigendian = false)
         {
             var stringBuilder = new StringBuilder();
 
             foreach (var _byte in Buffer)
             {
-                stringBuilder.Append(_byte.ToString(format));
+                if (bigendian)
+                {
+                    stringBuilder.Insert(0, _byte.ToString(format));
+                }
+                else
+                {
+                    stringBuilder.Append(_byte.ToString(format));
+                }
             }
 
             return stringBuilder.ToString();

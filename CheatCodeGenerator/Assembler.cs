@@ -87,6 +87,23 @@ namespace CheatCodeGenerator
         }
 
         /// <summary>
+        /// 汇编转hex
+        /// </summary>
+        /// <param name="asmCode">汇编代码</param>
+        /// <returns></returns>
+        public static string Assembler2Hex(string asmCode)
+        {
+            using (var keystone = new Engine(Architecture.ARM, Mode.LITTLE_ENDIAN)
+            {
+                ThrowOnError = true
+            })
+            {
+                var encodeData = keystone.Assemble(asmCode, 0);
+                return encodeData.ToString("X2", true);
+            }
+        }
+
+        /// <summary>
         /// 生成作弊代码
         /// </summary>
         /// <param name="baseAddr">基础地址</param>
@@ -104,11 +121,11 @@ namespace CheatCodeGenerator
                 //设定偏移量
                 "D3000000",
                 baseAddr.ToString("X8"),
-
                 //目的地址代码长度
                 $"E0{destAddr - baseAddr:X6}",
                 ((hexList.Length - 1) * 4).ToString("X8")
             };
+
             //写入汇编
             if (hexList.Length > 1)
             {
@@ -123,7 +140,6 @@ namespace CheatCodeGenerator
             codeLines.Add((injectAddr - baseAddr).ToString("X8"));
             codeLines.Add(hexList[0]);
 
-            
             //添加结束
             codeLines.Add("D2000000");
             codeLines.Add("00000000");

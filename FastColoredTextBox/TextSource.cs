@@ -13,7 +13,7 @@ namespace FastColoredTextBoxNS
     /// </summary>
     public class TextSource : IList<Line>, IDisposable
     {
-        readonly protected List<Line> lines = new List<Line>();
+        protected readonly List<Line> lines = new List<Line>();
         protected LinesAccessor linesAccessor;
         private int lastLineUniqueId;
         public CommandManager Manager { get; set; }

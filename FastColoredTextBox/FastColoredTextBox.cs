@@ -289,7 +289,8 @@ namespace FastColoredTextBoxNS
         /// MacrosManager records, stores and executes the macroses
         /// </summary>
         [Browsable(false)]
-        public MacrosManager MacrosManager { get { return macrosManager; } }
+        public MacrosManager MacrosManager
+        { get { return macrosManager; } }
 
         /// <summary>
         /// Allows drag and drop
@@ -445,12 +446,12 @@ namespace FastColoredTextBoxNS
             }
         }
 
-
         public string[] TextLines
         {
             get => Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
             set => Text = string.Join("\r\n", value);
         }
+
         /// <summary>
         /// Background color for current line
         /// </summary>
@@ -1129,7 +1130,6 @@ namespace FastColoredTextBoxNS
         [Browsable(true)]
         [DefaultValue(null)]
         [Description("Allows to get text from other FastColoredTextBox.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public FastColoredTextBox SourceTextBox
         {
             get { return sourceTextBox; }
@@ -3571,7 +3571,6 @@ namespace FastColoredTextBoxNS
             }
             else
             {
-
                 if (a.KeyCode == Keys.Alt)
                     return true;
 
@@ -4372,7 +4371,6 @@ namespace FastColoredTextBoxNS
             char sourceC = c;
             if (OnKeyPressing(sourceC)) //KeyPress event processed key
                 return true;
-
 
             if (Selection.ReadOnly)
                 return false;
@@ -6117,7 +6115,6 @@ namespace FastColoredTextBoxNS
         /// </summary>
         protected virtual void OnTextChanged(TextChangedEventArgs args)
         {
-
             args.ChangedRange.Normalize();
 
             if (updating > 0)
@@ -6806,7 +6803,6 @@ namespace FastColoredTextBoxNS
 
             var old = Selection.Clone();
             lines.Manager.ExecuteCommand(new SelectCommand(TextSource));//remember selection
-
 
             Selection.Normalize();
             Range currentSelection = this.Selection.Clone();
@@ -7736,7 +7732,6 @@ window.status = ""#print"";
 
         void ISupportInitialize.BeginInit()
         {
-
         }
 
         void ISupportInitialize.EndInit()

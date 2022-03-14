@@ -75,7 +75,6 @@ namespace FastColoredTextBoxNS
                 sb.AppendFormat("<font style=\"font-family: {0}, monospace; font-size: {1}pt; line-height: {2}px;\">",
                                                 r.tb.Font.Name, r.tb.Font.SizeInPoints, r.tb.CharHeight);
 
-
             if (IncludeLineNumbers)
                 tempSB.AppendFormat("<span class=lineNumber>{0}</span>  ", currentLine + 1);
 

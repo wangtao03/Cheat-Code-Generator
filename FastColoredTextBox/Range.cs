@@ -934,7 +934,6 @@ namespace FastColoredTextBoxNS
             //enumaerate lines
             for (int iLine = Start.iLine; iLine <= End.iLine; iLine++)
             {
-
                 bool isLineLoaded = fts != null ? fts.IsLineLoaded(iLine) : true;
 
                 var r = new Range(tb, new Place(0, iLine), new Place(tb[iLine].Count, iLine));
@@ -967,7 +966,6 @@ namespace FastColoredTextBoxNS
             //enumaerate lines
             for (int iLine = End.iLine; iLine >= Start.iLine; iLine--)
             {
-
                 bool isLineLoaded = fts != null ? fts.IsLineLoaded(iLine) : true;
 
                 var r = new Range(tb, new Place(0, iLine), new Place(tb[iLine].Count, iLine));

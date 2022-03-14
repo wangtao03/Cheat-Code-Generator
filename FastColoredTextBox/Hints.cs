@@ -208,7 +208,8 @@ namespace FastColoredTextBoxNS
         /// <summary>
         /// Text of simple hint
         /// </summary>
-        public string Text { get { return HostPanel.Text; } set { HostPanel.Text = value; } }
+        public string Text
+        { get { return HostPanel.Text; } set { HostPanel.Text = value; } }
 
         /// <summary>
         /// Linked range
@@ -218,32 +219,38 @@ namespace FastColoredTextBoxNS
         /// <summary>
         /// Backcolor
         /// </summary>
-        public Color BackColor { get { return HostPanel.BackColor; } set { HostPanel.BackColor = value; } }
+        public Color BackColor
+        { get { return HostPanel.BackColor; } set { HostPanel.BackColor = value; } }
 
         /// <summary>
         /// Second backcolor
         /// </summary>
-        public Color BackColor2 { get { return HostPanel.BackColor2; } set { HostPanel.BackColor2 = value; } }
+        public Color BackColor2
+        { get { return HostPanel.BackColor2; } set { HostPanel.BackColor2 = value; } }
 
         /// <summary>
         /// Border color
         /// </summary>
-        public Color BorderColor { get { return HostPanel.BorderColor; } set { HostPanel.BorderColor = value; } }
+        public Color BorderColor
+        { get { return HostPanel.BorderColor; } set { HostPanel.BorderColor = value; } }
 
         /// <summary>
         /// Fore color
         /// </summary>
-        public Color ForeColor { get { return HostPanel.ForeColor; } set { HostPanel.ForeColor = value; } }
+        public Color ForeColor
+        { get { return HostPanel.ForeColor; } set { HostPanel.ForeColor = value; } }
 
         /// <summary>
         /// Text alignment
         /// </summary>
-        public StringAlignment TextAlignment { get { return HostPanel.TextAlignment; } set { HostPanel.TextAlignment = value; } }
+        public StringAlignment TextAlignment
+        { get { return HostPanel.TextAlignment; } set { HostPanel.TextAlignment = value; } }
 
         /// <summary>
         /// Font
         /// </summary>
-        public Font Font { get { return HostPanel.Font; } set { HostPanel.Font = value; } }
+        public Font Font
+        { get { return HostPanel.Font; } set { HostPanel.Font = value; } }
 
         /// <summary>
         /// Occurs when user click on simple hint
@@ -267,12 +274,14 @@ namespace FastColoredTextBoxNS
         /// <summary>
         /// Width of hint (if Dock is None)
         /// </summary>
-        public int Width { get { return HostPanel.Width; } set { HostPanel.Width = value; } }
+        public int Width
+        { get { return HostPanel.Width; } set { HostPanel.Width = value; } }
 
         /// <summary>
         /// Height of hint
         /// </summary>
-        public int Height { get { return HostPanel.Height; } set { HostPanel.Height = value; } }
+        public int Height
+        { get { return HostPanel.Height; } set { HostPanel.Height = value; } }
 
         /// <summary>
         /// Host panel
@@ -289,7 +298,8 @@ namespace FastColoredTextBoxNS
         /// <summary>
         /// Cursor
         /// </summary>
-        public Cursor Cursor { get { return HostPanel.Cursor; } set { HostPanel.Cursor = value; } }
+        public Cursor Cursor
+        { get { return HostPanel.Cursor; } set { HostPanel.Cursor = value; } }
 
         /// <summary>
         /// Inlining. If True then hint will moves apart text.

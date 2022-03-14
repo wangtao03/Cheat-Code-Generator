@@ -3,7 +3,7 @@
   <brackets left="[" right="]" />
   <!--样式-->
   <style name="CommentStyle" color="#258c25" />
-  <style name="LabelStyle" color="#808080" fontStyle="Italic"/>
+  <style name="LabelStyle" color="#808080" fontStyle="Italic" />
   <style name="NumberStyle" color="#ff4500" />
   <style name="RegisterStyle" color="#2f91af" />
   <style name="InstructionStyle" color="Blue" fontStyle="Bold" />
@@ -12,10 +12,10 @@
   <rule style="CommentStyle" options="Multiline">//.*$</rule>
   <rule style="CommentStyle" options="Singleline">(/\*.*?\*/)|(/\*.*)</rule>
   <rule style="CommentStyle" options="Singleline,RightToLeft">(/\*.*?\*/)|(.*\*/)</rule>
-  
+
   <!--标签高亮-->
   <rule style="LabelStyle" options="Multiline">\S*:</rule>
-  
+
   <!--数字高亮-->
   <rule style="NumberStyle" options="Singleline">([#=](0[xX])?[a-fA-F\d]+)</rule>
 

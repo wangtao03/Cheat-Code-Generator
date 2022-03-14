@@ -46,22 +46,26 @@ namespace FastColoredTextBoxNS
         /// <summary>
         /// Allow TAB for select menu item
         /// </summary>
-        public bool AllowTabKey { get { return listView.AllowTabKey; } set { listView.AllowTabKey = value; } }
+        public bool AllowTabKey
+        { get { return listView.AllowTabKey; } set { listView.AllowTabKey = value; } }
 
         /// <summary>
         /// Interval of menu appear (ms)
         /// </summary>
-        public int AppearInterval { get { return listView.AppearInterval; } set { listView.AppearInterval = value; } }
+        public int AppearInterval
+        { get { return listView.AppearInterval; } set { listView.AppearInterval = value; } }
 
         /// <summary>
         /// Sets the max tooltip window size
         /// </summary>
-        public Size MaxTooltipSize { get { return listView.MaxToolTipSize; } set { listView.MaxToolTipSize = value; } }
+        public Size MaxTooltipSize
+        { get { return listView.MaxToolTipSize; } set { listView.MaxToolTipSize = value; } }
 
         /// <summary>
         /// Tooltip will perm show and duration will be ignored
         /// </summary>
-        public bool AlwaysShowTooltip { get { return listView.AlwaysShowTooltip; } set { listView.AlwaysShowTooltip = value; } }
+        public bool AlwaysShowTooltip
+        { get { return listView.AlwaysShowTooltip; } set { listView.AlwaysShowTooltip = value; } }
 
         /// <summary>
         /// Back color of selected item
@@ -112,7 +116,7 @@ namespace FastColoredTextBoxNS
             set { listView.Font = value; }
         }
 
-        new internal void OnOpening(CancelEventArgs args)
+        internal new void OnOpening(CancelEventArgs args)
         {
             Opening?.Invoke(this, args);
         }
@@ -224,6 +228,7 @@ namespace FastColoredTextBoxNS
 
         private AutocompleteMenu Menu
         { get { return Parent as AutocompleteMenu; } }
+
         private int oldItemCount = 0;
         private readonly FastColoredTextBox tb;
         internal ToolTip toolTip = new ToolTip();
@@ -231,7 +236,8 @@ namespace FastColoredTextBoxNS
 
         internal bool AllowTabKey { get; set; }
         public ImageList ImageList { get; set; }
-        internal int AppearInterval { get { return timer.Interval; } set { timer.Interval = value; } }
+        internal int AppearInterval
+        { get { return timer.Interval; } set { timer.Interval = value; } }
         internal int ToolTipDuration { get; set; }
         internal Size MaxToolTipSize { get; set; }
 

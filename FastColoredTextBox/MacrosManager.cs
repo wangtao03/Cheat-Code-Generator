@@ -106,7 +106,8 @@ namespace FastColoredTextBoxNS
         /// <summary>
         /// Returns True if last macro is empty
         /// </summary>
-        public bool MacroIsEmpty { get { return macro.Count == 0; } }
+        public bool MacroIsEmpty
+        { get { return macro.Count == 0; } }
 
         /// <summary>
         /// Macros as string.

@@ -2,7 +2,7 @@
 
 using System;
 using System.IO;
-using System.Security.Cryptography.X509Certificates;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -29,7 +29,7 @@ namespace CheatCodeGenerator
             }
             catch
             {
-                MessageBox.Show("输入的数据有误!", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("输入的地址有误!", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -63,7 +63,7 @@ namespace CheatCodeGenerator
             }
             catch (ArgumentOutOfRangeException)
             {
-                MessageBox.Show("输入的数据有误!", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("输入的地址有误!", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
@@ -204,8 +204,22 @@ namespace CheatCodeGenerator
 
         private void TsbtnCIConvert_Click(object sender, EventArgs e)
         {
-            if (txtCIAsm.TextLength <= 2) return;
-            txtCICheat.Lines = Assembler.Assembler2Hex(txtCIAsm.TextLines);
+            if (txtCIAsm.TextLength < 1) return;
+
+            var stringBuilder = new StringBuilder();
+
+            foreach (var line in txtCIAsm.TextLines)
+            {
+                try
+                {
+                    stringBuilder.AppendLine(Assembler.Assembler2Hex(line));
+                }
+                catch (Exception)
+                {
+                    continue;
+                }
+            }
+            txtCICheat.Text = stringBuilder.ToString();
             grpCICheat.Text = "16进制汇编代码:";
         }
 
