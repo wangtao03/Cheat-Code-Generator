@@ -55,7 +55,7 @@ namespace CheatCodeGenerator
 
             if (jumpBack)
             {
-                asm = useLink ? "BX LR" : $"B #0x{(int)(-offset - 4):X8}";
+                asm = useLink ? "BX LR" : $"B #0x{(int)(-offset - 4 - 4):X8}";
                 lines.Add(asm);
             }
 
@@ -122,7 +122,7 @@ namespace CheatCodeGenerator
                 "D3000000",
                 baseAddr.ToString("X8"),
                 //目的地址代码长度
-                $"E0{destAddr - baseAddr:X6}",
+                $"E{destAddr - baseAddr:X7}",
                 ((hexList.Length - 1) * 4).ToString("X8")
             };
 
@@ -137,8 +137,10 @@ namespace CheatCodeGenerator
             if (codeLines.Count % 2 != 0) codeLines.Add("00000000");
 
             //注入点跳转
-            codeLines.Add((injectAddr - baseAddr).ToString("X8"));
+            codeLines.Add($"E{(injectAddr - baseAddr):X7}");
+            codeLines.Add("00000004");
             codeLines.Add(hexList[0]);
+            codeLines.Add("00000000");
 
             //添加结束
             codeLines.Add("D2000000");

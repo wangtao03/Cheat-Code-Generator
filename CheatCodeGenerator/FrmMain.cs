@@ -189,6 +189,7 @@ namespace CheatCodeGenerator
             if (txtCIAsm.Text.Length < 2) return;
             using (var saveFileDialog = new SaveFileDialog()
             {
+                FileName = "CheatCode.txt",
                 Title = "保存作弊代码",
                 AddExtension = true,
                 Filter = "文本文档(*.txt)|*.txt",

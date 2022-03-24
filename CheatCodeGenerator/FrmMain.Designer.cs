@@ -52,7 +52,6 @@
             this.chkJumpBack = new System.Windows.Forms.CheckBox();
             this.btnCI2Asm = new System.Windows.Forms.Button();
             this.grpCIAsm = new System.Windows.Forms.GroupBox();
-            this.txtCIAsm = new FastColoredTextBoxNS.FastColoredTextBox();
             this.grpCICheat = new System.Windows.Forms.GroupBox();
             this.txtCICheat = new System.Windows.Forms.TextBox();
             this.tsCodeInject = new System.Windows.Forms.ToolStrip();
@@ -75,6 +74,8 @@
             this.rdoCJUseBL = new System.Windows.Forms.RadioButton();
             this.grbCJCondition = new System.Windows.Forms.GroupBox();
             this.tlpCJCondition = new System.Windows.Forms.TableLayoutPanel();
+            this.rdoCJConditionCS = new System.Windows.Forms.RadioButton();
+            this.rdoCJConditionCC = new System.Windows.Forms.RadioButton();
             this.labCJSigned = new System.Windows.Forms.Label();
             this.rdoCJConditionLS = new System.Windows.Forms.RadioButton();
             this.rdoCJConditionHI = new System.Windows.Forms.RadioButton();
@@ -133,8 +134,7 @@
             this.chkCJKeyLeft = new System.Windows.Forms.CheckBox();
             this.chkCJKeyDown = new System.Windows.Forms.CheckBox();
             this.chkCJKeyUp = new System.Windows.Forms.CheckBox();
-            this.rdoCJConditionCC = new System.Windows.Forms.RadioButton();
-            this.rdoCJConditionCS = new System.Windows.Forms.RadioButton();
+            this.txtCIAsm = new FastColoredTextBoxNS.FastColoredTextBox();
             this.tabMainFirst.SuspendLayout();
             this.tpCodeInject.SuspendLayout();
             this.tlpCodeInject.SuspendLayout();
@@ -143,7 +143,6 @@
             this.grpCIBranchType.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.grpCIAsm.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCIAsm)).BeginInit();
             this.grpCICheat.SuspendLayout();
             this.tsCodeInject.SuspendLayout();
             this.tpHelper.SuspendLayout();
@@ -158,6 +157,7 @@
             this.tableLayoutPanel2.SuspendLayout();
             this.grpKeyCode.SuspendLayout();
             this.tlpCJKeyCode.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCIAsm)).BeginInit();
             this.SuspendLayout();
             // 
             // tabMainFirst
@@ -299,7 +299,7 @@
             this.txtCIInjectAddr.Margin = new System.Windows.Forms.Padding(3, 4, 3, 7);
             this.txtCIInjectAddr.MaxLength = 6;
             this.txtCIInjectAddr.Name = "txtCIInjectAddr";
-            this.txtCIInjectAddr.Size = new System.Drawing.Size(106, 25);
+            this.txtCIInjectAddr.Size = new System.Drawing.Size(106, 23);
             this.txtCIInjectAddr.TabIndex = 1;
             this.txtCIInjectAddr.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtAddr_KeyPress);
             // 
@@ -323,7 +323,7 @@
             this.txtCIBaseAddr.Margin = new System.Windows.Forms.Padding(3, 4, 3, 7);
             this.txtCIBaseAddr.MaxLength = 8;
             this.txtCIBaseAddr.Name = "txtCIBaseAddr";
-            this.txtCIBaseAddr.Size = new System.Drawing.Size(106, 25);
+            this.txtCIBaseAddr.Size = new System.Drawing.Size(106, 23);
             this.txtCIBaseAddr.TabIndex = 0;
             this.txtCIBaseAddr.Text = "00000000";
             this.txtCIBaseAddr.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtAddr_KeyPress);
@@ -336,7 +336,7 @@
             this.txtCIDestAddr.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtCIDestAddr.MaxLength = 6;
             this.txtCIDestAddr.Name = "txtCIDestAddr";
-            this.txtCIDestAddr.Size = new System.Drawing.Size(106, 25);
+            this.txtCIDestAddr.Size = new System.Drawing.Size(106, 23);
             this.txtCIDestAddr.TabIndex = 2;
             this.txtCIDestAddr.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtAddr_KeyPress);
             // 
@@ -413,22 +413,22 @@
             // rdoCIUseB
             // 
             this.rdoCIUseB.AutoSize = true;
+            this.rdoCIUseB.Checked = true;
             this.rdoCIUseB.Location = new System.Drawing.Point(13, 3);
             this.rdoCIUseB.Name = "rdoCIUseB";
-            this.rdoCIUseB.Size = new System.Drawing.Size(102, 17);
+            this.rdoCIUseB.Size = new System.Drawing.Size(102, 18);
             this.rdoCIUseB.TabIndex = 3;
+            this.rdoCIUseB.TabStop = true;
             this.rdoCIUseB.Text = "普通跳转 ( B )";
             this.rdoCIUseB.UseVisualStyleBackColor = true;
             // 
             // rdoCIUseBL
             // 
             this.rdoCIUseBL.AutoSize = true;
-            this.rdoCIUseBL.Checked = true;
-            this.rdoCIUseBL.Location = new System.Drawing.Point(13, 26);
+            this.rdoCIUseBL.Location = new System.Drawing.Point(13, 27);
             this.rdoCIUseBL.Name = "rdoCIUseBL";
-            this.rdoCIUseBL.Size = new System.Drawing.Size(128, 17);
+            this.rdoCIUseBL.Size = new System.Drawing.Size(128, 18);
             this.rdoCIUseBL.TabIndex = 4;
-            this.rdoCIUseBL.TabStop = true;
             this.rdoCIUseBL.Text = "带链接的跳转( BL )";
             this.rdoCIUseBL.UseVisualStyleBackColor = true;
             // 
@@ -437,9 +437,9 @@
             this.chkJumpBack.AutoSize = true;
             this.chkJumpBack.Checked = true;
             this.chkJumpBack.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkJumpBack.Location = new System.Drawing.Point(13, 49);
+            this.chkJumpBack.Location = new System.Drawing.Point(13, 51);
             this.chkJumpBack.Name = "chkJumpBack";
-            this.chkJumpBack.Size = new System.Drawing.Size(87, 17);
+            this.chkJumpBack.Size = new System.Drawing.Size(87, 18);
             this.chkJumpBack.TabIndex = 5;
             this.chkJumpBack.Text = "跳回注入点";
             this.chkJumpBack.UseVisualStyleBackColor = true;
@@ -468,45 +468,6 @@
             this.grpCIAsm.TabIndex = 9;
             this.grpCIAsm.TabStop = false;
             this.grpCIAsm.Text = "注入汇编代码:";
-            // 
-            // txtCIAsm
-            // 
-            this.txtCIAsm.AutoCompleteBracketsList = new char[] {
-        '(',
-        ')',
-        '{',
-        '}',
-        '[',
-        ']',
-        '\"',
-        '\"',
-        '\'',
-        '\''};
-            this.txtCIAsm.AutoIndentCharsPatterns = "^\\s*[\\w\\.]+(\\s\\w+)?\\s*(?<range>=)\\s*(?<range>[^;=]+);\n^\\s*(case|default)\\s*[^:]*(" +
-    "?<range>:)\\s*(?<range>[^;]+);";
-            this.txtCIAsm.AutoScrollMinSize = new System.Drawing.Size(27, 19);
-            this.txtCIAsm.BackBrush = null;
-            this.txtCIAsm.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtCIAsm.CharHeight = 19;
-            this.txtCIAsm.CharUnicodeWidth = 16;
-            this.txtCIAsm.CharWidth = 8;
-            this.txtCIAsm.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtCIAsm.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.txtCIAsm.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtCIAsm.Font = new System.Drawing.Font("JetBrains Mono", 9.75F);
-            this.txtCIAsm.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
-            this.txtCIAsm.IsReplaceMode = false;
-            this.txtCIAsm.LineInterval = 2;
-            this.txtCIAsm.Location = new System.Drawing.Point(3, 19);
-            this.txtCIAsm.Name = "txtCIAsm";
-            this.txtCIAsm.Paddings = new System.Windows.Forms.Padding(0);
-            this.txtCIAsm.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.txtCIAsm.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("txtCIAsm.ServiceColors")));
-            this.txtCIAsm.Size = new System.Drawing.Size(235, 274);
-            this.txtCIAsm.TabIndex = 0;
-            this.txtCIAsm.TextLines = new string[] {
-        ""};
-            this.txtCIAsm.Zoom = 100;
             // 
             // grpCICheat
             // 
@@ -645,7 +606,7 @@
             this.tabMainSecond.Name = "tabMainSecond";
             this.tabMainSecond.RowCount = 1;
             this.tabMainSecond.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tabMainSecond.Size = new System.Drawing.Size(673, 367);
+            this.tabMainSecond.Size = new System.Drawing.Size(673, 371);
             this.tabMainSecond.TabIndex = 0;
             // 
             // grpCalcJmp
@@ -654,7 +615,7 @@
             this.grpCalcJmp.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grpCalcJmp.Location = new System.Drawing.Point(3, 3);
             this.grpCalcJmp.Name = "grpCalcJmp";
-            this.grpCalcJmp.Size = new System.Drawing.Size(422, 361);
+            this.grpCalcJmp.Size = new System.Drawing.Size(422, 365);
             this.grpCalcJmp.TabIndex = 0;
             this.grpCalcJmp.TabStop = false;
             this.grpCalcJmp.Text = "跳转计算";
@@ -687,7 +648,7 @@
             this.tlpCalcJmp.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this.tlpCalcJmp.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tlpCalcJmp.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tlpCalcJmp.Size = new System.Drawing.Size(416, 339);
+            this.tlpCalcJmp.Size = new System.Drawing.Size(416, 343);
             this.tlpCalcJmp.TabIndex = 0;
             // 
             // grpCJBranchType
@@ -698,7 +659,7 @@
             this.grpCJBranchType.Location = new System.Drawing.Point(3, 143);
             this.grpCJBranchType.Name = "grpCJBranchType";
             this.tlpCalcJmp.SetRowSpan(this.grpCJBranchType, 2);
-            this.grpCJBranchType.Size = new System.Drawing.Size(184, 98);
+            this.grpCJBranchType.Size = new System.Drawing.Size(184, 102);
             this.grpCJBranchType.TabIndex = 2;
             this.grpCJBranchType.TabStop = false;
             this.grpCJBranchType.Text = "跳转类型";
@@ -717,7 +678,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(178, 76);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(178, 80);
             this.tableLayoutPanel3.TabIndex = 1;
             // 
             // rdoCJUseB
@@ -750,7 +711,7 @@
             this.grbCJCondition.Location = new System.Drawing.Point(193, 3);
             this.grbCJCondition.Name = "grbCJCondition";
             this.tlpCalcJmp.SetRowSpan(this.grbCJCondition, 3);
-            this.grbCJCondition.Size = new System.Drawing.Size(220, 238);
+            this.grbCJCondition.Size = new System.Drawing.Size(220, 242);
             this.grbCJCondition.TabIndex = 1;
             this.grbCJCondition.TabStop = false;
             this.grbCJCondition.Tag = " ";
@@ -798,8 +759,40 @@
             this.tlpCJCondition.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11123F));
             this.tlpCJCondition.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11123F));
             this.tlpCJCondition.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpCJCondition.Size = new System.Drawing.Size(214, 216);
+            this.tlpCJCondition.Size = new System.Drawing.Size(214, 220);
             this.tlpCJCondition.TabIndex = 1;
+            // 
+            // rdoCJConditionCS
+            // 
+            this.rdoCJConditionCS.AutoSize = true;
+            this.rdoCJConditionCS.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rdoCJConditionCS.Font = new System.Drawing.Font("JetBrains Mono", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdoCJConditionCS.ForeColor = System.Drawing.Color.Teal;
+            this.rdoCJConditionCS.Location = new System.Drawing.Point(109, 44);
+            this.rdoCJConditionCS.Margin = new System.Windows.Forms.Padding(1, 0, 0, 0);
+            this.rdoCJConditionCS.Name = "rdoCJConditionCS";
+            this.rdoCJConditionCS.Size = new System.Drawing.Size(103, 19);
+            this.rdoCJConditionCS.TabIndex = 5;
+            this.rdoCJConditionCS.Tag = "CS";
+            this.rdoCJConditionCS.Text = "CS(无进位)";
+            this.rdoCJConditionCS.UseVisualStyleBackColor = true;
+            this.rdoCJConditionCS.CheckedChanged += new System.EventHandler(this.RdoCJCondition_CheckedChanged);
+            // 
+            // rdoCJConditionCC
+            // 
+            this.rdoCJConditionCC.AutoSize = true;
+            this.rdoCJConditionCC.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rdoCJConditionCC.Font = new System.Drawing.Font("JetBrains Mono", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdoCJConditionCC.ForeColor = System.Drawing.Color.Teal;
+            this.rdoCJConditionCC.Location = new System.Drawing.Point(3, 44);
+            this.rdoCJConditionCC.Margin = new System.Windows.Forms.Padding(1, 0, 0, 0);
+            this.rdoCJConditionCC.Name = "rdoCJConditionCC";
+            this.rdoCJConditionCC.Size = new System.Drawing.Size(103, 19);
+            this.rdoCJConditionCC.TabIndex = 4;
+            this.rdoCJConditionCC.Tag = "CC";
+            this.rdoCJConditionCC.Text = "CC(有进位)";
+            this.rdoCJConditionCC.UseVisualStyleBackColor = true;
+            this.rdoCJConditionCC.CheckedChanged += new System.EventHandler(this.RdoCJCondition_CheckedChanged);
             // 
             // labCJSigned
             // 
@@ -919,7 +912,7 @@
             this.rdoCJConditionGT.Location = new System.Drawing.Point(3, 191);
             this.rdoCJConditionGT.Margin = new System.Windows.Forms.Padding(1, 0, 0, 0);
             this.rdoCJConditionGT.Name = "rdoCJConditionGT";
-            this.rdoCJConditionGT.Size = new System.Drawing.Size(103, 23);
+            this.rdoCJConditionGT.Size = new System.Drawing.Size(103, 27);
             this.rdoCJConditionGT.TabIndex = 16;
             this.rdoCJConditionGT.Tag = "GT";
             this.rdoCJConditionGT.Text = "GT (>)";
@@ -935,7 +928,7 @@
             this.rdoCJConditionLE.Location = new System.Drawing.Point(109, 191);
             this.rdoCJConditionLE.Margin = new System.Windows.Forms.Padding(1, 0, 0, 0);
             this.rdoCJConditionLE.Name = "rdoCJConditionLE";
-            this.rdoCJConditionLE.Size = new System.Drawing.Size(103, 23);
+            this.rdoCJConditionLE.Size = new System.Drawing.Size(103, 27);
             this.rdoCJConditionLE.TabIndex = 17;
             this.rdoCJConditionLE.Tag = "LE";
             this.rdoCJConditionLE.Text = "LE (≤)";
@@ -1154,7 +1147,7 @@
             this.txtCJAddrStart.Margin = new System.Windows.Forms.Padding(3, 4, 3, 7);
             this.txtCJAddrStart.MaxLength = 6;
             this.txtCJAddrStart.Name = "txtCJAddrStart";
-            this.txtCJAddrStart.Size = new System.Drawing.Size(136, 25);
+            this.txtCJAddrStart.Size = new System.Drawing.Size(136, 23);
             this.txtCJAddrStart.TabIndex = 1;
             this.txtCJAddrStart.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtAddr_KeyPress);
             // 
@@ -1166,7 +1159,7 @@
             this.txtCJAddrDest.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtCJAddrDest.MaxLength = 6;
             this.txtCJAddrDest.Name = "txtCJAddrDest";
-            this.txtCJAddrDest.Size = new System.Drawing.Size(136, 25);
+            this.txtCJAddrDest.Size = new System.Drawing.Size(136, 23);
             this.txtCJAddrDest.TabIndex = 2;
             this.txtCJAddrDest.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtAddr_KeyPress);
             // 
@@ -1201,7 +1194,7 @@
             this.tlpCalcJmp.SetColumnSpan(this.btnCJCode, 7);
             this.btnCJCode.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnCJCode.Image = global::CheatCodeGenerator.Properties.Resources.down;
-            this.btnCJCode.Location = new System.Drawing.Point(3, 247);
+            this.btnCJCode.Location = new System.Drawing.Point(3, 251);
             this.btnCJCode.Name = "btnCJCode";
             this.btnCJCode.Size = new System.Drawing.Size(410, 29);
             this.btnCJCode.TabIndex = 3;
@@ -1212,7 +1205,7 @@
             // 
             this.labCJAsm.AutoSize = true;
             this.labCJAsm.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labCJAsm.Location = new System.Drawing.Point(3, 279);
+            this.labCJAsm.Location = new System.Drawing.Point(3, 283);
             this.labCJAsm.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.labCJAsm.Name = "labCJAsm";
             this.labCJAsm.Size = new System.Drawing.Size(77, 30);
@@ -1224,7 +1217,7 @@
             // 
             this.labCJCteat.AutoSize = true;
             this.labCJCteat.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labCJCteat.Location = new System.Drawing.Point(3, 309);
+            this.labCJCteat.Location = new System.Drawing.Point(3, 313);
             this.labCJCteat.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.labCJCteat.Name = "labCJCteat";
             this.labCJCteat.Size = new System.Drawing.Size(77, 30);
@@ -1237,10 +1230,10 @@
             this.tlpCalcJmp.SetColumnSpan(this.txtCJAsm, 6);
             this.txtCJAsm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtCJAsm.Font = new System.Drawing.Font("JetBrains Mono", 9.75F);
-            this.txtCJAsm.Location = new System.Drawing.Point(83, 282);
+            this.txtCJAsm.Location = new System.Drawing.Point(83, 286);
             this.txtCJAsm.Name = "txtCJAsm";
             this.txtCJAsm.ReadOnly = true;
-            this.txtCJAsm.Size = new System.Drawing.Size(330, 25);
+            this.txtCJAsm.Size = new System.Drawing.Size(330, 23);
             this.txtCJAsm.TabIndex = 6;
             this.txtCJAsm.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -1249,10 +1242,10 @@
             this.tlpCalcJmp.SetColumnSpan(this.txtCJCheat, 6);
             this.txtCJCheat.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtCJCheat.Font = new System.Drawing.Font("JetBrains Mono", 9.75F);
-            this.txtCJCheat.Location = new System.Drawing.Point(83, 312);
+            this.txtCJCheat.Location = new System.Drawing.Point(83, 316);
             this.txtCJCheat.Name = "txtCJCheat";
             this.txtCJCheat.ReadOnly = true;
-            this.txtCJCheat.Size = new System.Drawing.Size(330, 25);
+            this.txtCJCheat.Size = new System.Drawing.Size(330, 23);
             this.txtCJCheat.TabIndex = 7;
             this.txtCJCheat.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -1262,7 +1255,7 @@
             this.grpKeyCode.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grpKeyCode.Location = new System.Drawing.Point(431, 3);
             this.grpKeyCode.Name = "grpKeyCode";
-            this.grpKeyCode.Size = new System.Drawing.Size(239, 361);
+            this.grpKeyCode.Size = new System.Drawing.Size(239, 365);
             this.grpKeyCode.TabIndex = 1;
             this.grpKeyCode.TabStop = false;
             this.grpKeyCode.Tag = "0";
@@ -1316,7 +1309,7 @@
             this.tlpCJKeyCode.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
             this.tlpCJKeyCode.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
             this.tlpCJKeyCode.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tlpCJKeyCode.Size = new System.Drawing.Size(233, 339);
+            this.tlpCJKeyCode.Size = new System.Drawing.Size(233, 343);
             this.tlpCJKeyCode.TabIndex = 0;
             // 
             // txtCJKeyCode
@@ -1327,7 +1320,7 @@
             this.txtCJKeyCode.Location = new System.Drawing.Point(5, 305);
             this.txtCJKeyCode.Name = "txtCJKeyCode";
             this.txtCJKeyCode.ReadOnly = true;
-            this.txtCJKeyCode.Size = new System.Drawing.Size(223, 25);
+            this.txtCJKeyCode.Size = new System.Drawing.Size(223, 23);
             this.txtCJKeyCode.TabIndex = 27;
             this.txtCJKeyCode.Text = "DD000000 00000000";
             this.txtCJKeyCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -1736,37 +1729,44 @@
             this.chkCJKeyUp.UseVisualStyleBackColor = true;
             this.chkCJKeyUp.CheckedChanged += new System.EventHandler(this.ChkCJKeyCode_CheckedChanged);
             // 
-            // rdoCJConditionCC
+            // txtCIAsm
             // 
-            this.rdoCJConditionCC.AutoSize = true;
-            this.rdoCJConditionCC.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rdoCJConditionCC.Font = new System.Drawing.Font("JetBrains Mono", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdoCJConditionCC.ForeColor = System.Drawing.Color.Teal;
-            this.rdoCJConditionCC.Location = new System.Drawing.Point(3, 44);
-            this.rdoCJConditionCC.Margin = new System.Windows.Forms.Padding(1, 0, 0, 0);
-            this.rdoCJConditionCC.Name = "rdoCJConditionCC";
-            this.rdoCJConditionCC.Size = new System.Drawing.Size(103, 19);
-            this.rdoCJConditionCC.TabIndex = 4;
-            this.rdoCJConditionCC.Tag = "CC";
-            this.rdoCJConditionCC.Text = "CC(有进位)";
-            this.rdoCJConditionCC.UseVisualStyleBackColor = true;
-            this.rdoCJConditionCC.CheckedChanged += new System.EventHandler(this.RdoCJCondition_CheckedChanged);
-            // 
-            // rdoCJConditionCS
-            // 
-            this.rdoCJConditionCS.AutoSize = true;
-            this.rdoCJConditionCS.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rdoCJConditionCS.Font = new System.Drawing.Font("JetBrains Mono", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdoCJConditionCS.ForeColor = System.Drawing.Color.Teal;
-            this.rdoCJConditionCS.Location = new System.Drawing.Point(109, 44);
-            this.rdoCJConditionCS.Margin = new System.Windows.Forms.Padding(1, 0, 0, 0);
-            this.rdoCJConditionCS.Name = "rdoCJConditionCS";
-            this.rdoCJConditionCS.Size = new System.Drawing.Size(103, 19);
-            this.rdoCJConditionCS.TabIndex = 5;
-            this.rdoCJConditionCS.Tag = "CS";
-            this.rdoCJConditionCS.Text = "CS(无进位)";
-            this.rdoCJConditionCS.UseVisualStyleBackColor = true;
-            this.rdoCJConditionCS.CheckedChanged += new System.EventHandler(this.RdoCJCondition_CheckedChanged);
+            this.txtCIAsm.AutoCompleteBracketsList = new char[] {
+        '(',
+        ')',
+        '{',
+        '}',
+        '[',
+        ']',
+        '\"',
+        '\"',
+        '\'',
+        '\''};
+            this.txtCIAsm.AutoIndentCharsPatterns = "^\\s*[\\w\\.]+(\\s\\w+)?\\s*(?<range>=)\\s*(?<range>[^;=]+);\n^\\s*(case|default)\\s*[^:]*(" +
+    "?<range>:)\\s*(?<range>[^;]+);";
+            this.txtCIAsm.AutoScrollMinSize = new System.Drawing.Size(27, 17);
+            this.txtCIAsm.BackBrush = null;
+            this.txtCIAsm.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtCIAsm.CharHeight = 17;
+            this.txtCIAsm.CharUnicodeWidth = 16;
+            this.txtCIAsm.CharWidth = 8;
+            this.txtCIAsm.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtCIAsm.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.txtCIAsm.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtCIAsm.Font = new System.Drawing.Font("JetBrains Mono", 9.75F);
+            this.txtCIAsm.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
+            this.txtCIAsm.IsReplaceMode = false;
+            this.txtCIAsm.LineInterval = 2;
+            this.txtCIAsm.Location = new System.Drawing.Point(3, 19);
+            this.txtCIAsm.Name = "txtCIAsm";
+            this.txtCIAsm.Paddings = new System.Windows.Forms.Padding(0);
+            this.txtCIAsm.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.txtCIAsm.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("txtCIAsm.ServiceColors")));
+            this.txtCIAsm.Size = new System.Drawing.Size(235, 274);
+            this.txtCIAsm.TabIndex = 0;
+            this.txtCIAsm.TextLines = new string[] {
+        ""};
+            this.txtCIAsm.Zoom = 100;
             // 
             // FrmMain
             // 
@@ -1779,7 +1779,7 @@
             this.MinimumSize = new System.Drawing.Size(695, 430);
             this.Name = "FrmMain";
             this.Padding = new System.Windows.Forms.Padding(3);
-            this.Text = "Nintendo 3DS 作弊码生成器";
+            this.Text = "Nintendo 3DS 作弊码生成器 Ver1.4";
             this.Load += new System.EventHandler(this.FrmMain_Load);
             this.tabMainFirst.ResumeLayout(false);
             this.tpCodeInject.ResumeLayout(false);
@@ -1792,7 +1792,6 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.grpCIAsm.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.txtCIAsm)).EndInit();
             this.grpCICheat.ResumeLayout(false);
             this.grpCICheat.PerformLayout();
             this.tsCodeInject.ResumeLayout(false);
@@ -1814,6 +1813,7 @@
             this.grpKeyCode.ResumeLayout(false);
             this.tlpCJKeyCode.ResumeLayout(false);
             this.tlpCJKeyCode.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCIAsm)).EndInit();
             this.ResumeLayout(false);
 
         }
